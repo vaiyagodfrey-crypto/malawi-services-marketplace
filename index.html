@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Malawi Services Marketplace</title>
+
+<style>
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f4f6f5;
+    color: #222;
+}
+
+header {
+    background: #087a43;
+    color: white;
+    padding: 22px 15px;
+    text-align: center;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 25px;
+}
+
+header p {
+    margin-bottom: 0;
+}
+
+.search {
+    padding: 20px;
+    text-align: center;
+    background: white;
+}
+
+input, select {
+    width: 100%;
+    padding: 13px;
+    margin: 7px 0;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 15px;
+}
+
+.container {
+    padding: 15px;
+}
+
+h2 {
+    color: #087a43;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+}
+
+.card {
+    background: white;
+    padding: 18px 8px;
+    border-radius: 9px;
+    text-align: center;
+    box-shadow: 0 2px 5px #ddd;
+}
+
+.card span {
+    font-size: 27px;
+}
+
+.card h3 {
+    font-size: 15px;
+}
+
+.listing {
+    background: white;
+    padding: 15px;
+    margin: 12px 0;
+    border-radius: 8px;
+}
+
+button {
+    background: #087a43;
+    color: white;
+    border: none;
+    padding: 12px;
+    border-radius: 6px;
+    width: 100%;
+}
+
+footer {
+    background: #222;
+    color: white;
+    text-align: center;
+    padding: 20px;
+    margin-top: 25px;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+<h1>🇲🇼 Malawi Marketplace</h1>
+<p>Find Businesses, Services and Opportunities Across Malawi</p>
+</header>
+
+<section class="search">
+<h2>Find What You Need</h2>
+
+<input type="text" id="searchBox"
+placeholder="Search businesses, jobs, services..."
+onkeyup="filterListings()">
+
+<select id="district" onchange="filterListings()">
+<option value="">All Districts</option>
+<option>Lilongwe</option>
+<option>Blantyre</option>
+<option>Mzuzu</option>
+<option>Zomba</option>
+<option>Kasungu</option>
+<option>Mangochi</option>
+<option>Mzimba</option>
+</select>
+</section>
+
+<div class="container">
+
+<h2>Explore Categories</h2>
+
+<div class="grid">
+
+<div class="card"><span>🏢</span><h3>Businesses</h3></div>
+<div class="card"><span>🌾</span><h3>Agriculture</h3></div>
+<div class="card"><span>🛒</span><h3>Buy & Sell</h3></div>
+<div class="card"><span>🚗</span><h3>Transport</h3></div>
+<div class="card"><span>🏠</span><h3>Property</h3></div>
+<div class="card"><span>💼</span><h3>Jobs</h3></div>
+<div class="card"><span>🔧</span><h3>Local Services</h3></div>
+<div class="card"><span>🏥</span><h3>Healthcare</h3></div>
+
+</div>
+
+<h2>Featured Listings</h2>
+
+<div id="listings">
+
+<div class="listing" data-district="Lilongwe">
+<h3>Business Services</h3>
+<p>Discover businesses and services in Lilongwe.</p>
+<p>District: Lilongwe</p>
+</div>
+
+<div class="listing" data-district="Blantyre">
+<h3>Agricultural Products</h3>
+<p>Explore agricultural products and farming services.</p>
+<p>District: Blantyre</p>
+</div>
+
+<div class="listing" data-district="Mzuzu">
+<h3>Property Listings</h3>
+<p>Find available properties and accommodation.</p>
+<p>District: Mzuzu</p>
+</div>
+
+</div>
+</div>
+
+<footer>
+<p>Malawi Services Marketplace</p>
+<p>Connecting Malawians Nationwide 🇲🇼</p>
+<p>© 2026 All Rights Reserved</p>
+</footer>
+
+<script>
+function filterListings() {
+    let search = document.getElementById("searchBox").value.toLowerCase();
+    let district = document.getElementById("district").value;
+
+    document.querySelectorAll(".listing").forEach(item => {
+        let matchesSearch = item.innerText.toLowerCase().includes(search);
+        let matchesDistrict = !district || item.dataset.district === district;
+
+        item.style.display = matchesSearch && matchesDistrict ? "block" : "none";
+    });
+}
+</script>
+
+</body>
+</html>
